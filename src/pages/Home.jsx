@@ -23,13 +23,17 @@ export default function Home() {
       <About />
 
       {/* 4. Founder Section (LIGHT) */}
-      <Founder />
+
 
       {/* 5 & 6. Businesses & Featured Brand Section (BURGUNDY) */}
       <Businesses />
 
+
       {/* 7. Memories / Gallery Section (WHITE) */}
       <Memories />
+
+      <Founder />
+
 
       {/* 9. More Than a Mall / Community Section (BURGUNDY) */}
       <Community />
