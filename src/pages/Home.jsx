@@ -5,7 +5,6 @@ import About from '../components/About';
 import Founder from '../components/Founder';
 import Businesses from '../components/Businesses';
 import Memories from '../components/Memories';
-import Community from '../components/Community';
 import Location from '../components/Location';
 import ContactCTA from '../components/ContactCTA';
 import Footer from '../components/Footer';
@@ -33,10 +32,6 @@ export default function Home() {
       <Memories />
 
       <Founder />
-
-
-      {/* 9. More Than a Mall / Community Section (BURGUNDY) */}
-      <Community />
 
       {/* 10. Location + Interactive Google Map Section (WHITE) */}
       <Location />

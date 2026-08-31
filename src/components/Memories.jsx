@@ -1,67 +1,63 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Camera, Sparkles } from 'lucide-react';
+import { Camera } from 'lucide-react';
 import Gallery from './Gallery';
 
 export default function Memories() {
   return (
-    <section id="memories" className="py-24 bg-white text-brand-charcoal relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section
+      id="memories"
+      className="py-16 sm:py-24 scroll-mt-20 md:scroll-mt-24 bg-gradient-to-b from-[#FAF4F5] via-white to-[#FAF4F5] text-brand-charcoal relative overflow-hidden"
+    >
+      {/* ── Subtle Background Ambience ── */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-brand-burgundy/[0.03] blur-[140px] pointer-events-none -translate-y-1/2"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-1/4 w-[450px] h-[450px] rounded-full bg-brand-burgundy/[0.04] blur-[120px] pointer-events-none translate-y-1/2"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* ─── Centered Section Header (Matching "Our Stores" Style) ─── */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          {/* Branded Eyebrow Pill */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-cream border border-brand-burgundy/10 text-brand-burgundy text-xs font-bold uppercase tracking-wider mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-burgundy/10 border border-brand-burgundy/15 text-brand-burgundy text-xs font-bold uppercase tracking-widest mb-4 shadow-sm"
           >
             <Camera className="w-3.5 h-3.5 text-brand-burgundy" />
-            <span>PHOTOGRAPHY & MOMENTS</span>
+            <span>Memories &amp; Moments</span>
           </motion.div>
 
+          {/* Heading without any underline */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-5xl font-extrabold text-brand-burgundy font-heading tracking-tight mb-4"
+            transition={{ delay: 0.08 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-charcoal font-heading tracking-tight mb-4"
           >
-            Memories at Mall of Irikkur
+            Moments at <span className="text-brand-burgundy">Mall of Irikkur</span>
           </motion.h2>
 
+          {/* Subtitle description */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-brand-muted font-normal text-balance"
+            transition={{ delay: 0.15 }}
+            className="text-base sm:text-lg text-brand-muted font-normal max-w-2xl mx-auto leading-relaxed"
           >
-            Every visit becomes a memory.
+            Every celebration, gathering, and shopping day creates timeless memories. Explore the vibrant moments captured across our mall.
           </motion.p>
         </div>
 
-        {/* Gallery Grid */}
+        {/* ─── Gallery Carousel Component ─── */}
         <Gallery />
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-brand-burgundy text-white hover:bg-brand-burgundy-dark hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
-          >
-            <Sparkles className="w-4 h-4 text-white" />
-            <span>Share Your Moments With Us</span>
-          </a>
-        </motion.div>
-
       </div>
     </section>
   );

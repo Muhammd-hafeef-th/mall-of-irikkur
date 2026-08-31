@@ -16,14 +16,7 @@ export const galleryData = [
     image: "https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=900&auto=format&fit=crop",
     caption: "The radiant exterior architectural façade of Mall of Irikkur glowing in evening lights."
   },
-  {
-    id: 2,
-    title: "Grand Atrium & Glass Canopy",
-    category: "Architecture",
-    aspectRatio: "landscape",
-    image: "https://images.unsplash.com/photo-1567449303078-57ad995bd301?q=80&w=1200&auto=format&fit=crop",
-    caption: "Spacious central atrium filled with natural sunlight through the modern glass dome."
-  },
+
   {
     id: 3,
     title: "Onam Festival Floral Pookkalam",
@@ -79,5 +72,5 @@ export const galleryData = [
     aspectRatio: "square",
     image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop",
     caption: "Joyous laughter and engaging fun activities for children in our modern play arcade."
-  }
+  },
 ];
