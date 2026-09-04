@@ -3,19 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, X } from 'lucide-react';
 
 const navLinks = [
-  { name: 'Home',       href: '#home' },
-  { name: 'About',      href: '#about' },
-  { name: 'Founder',    href: '#founder' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Founder', href: '#founder' },
   { name: 'Businesses', href: '#businesses' },
-  { name: 'Memories',   href: '#memories' },
-  { name: 'Events',     href: '#events' },
-  { name: 'Contact',    href: '#contact' },
+  { name: 'Memories', href: '#memories' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [scrolled,  setScrolled]  = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
-  const [active,    setActive]    = useState('#home');
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState('#home');
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60);
@@ -41,11 +40,10 @@ export default function Navbar() {
           HEADER
       ════════════════════════════════ */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-brand-burgundy shadow-[0_2px_20px_rgba(66,9,20,0.4)] py-2.5'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+            ? 'bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.06)] border-b border-gray-100 py-3'
             : 'bg-gradient-to-b from-black/70 to-transparent backdrop-blur-sm py-4'
-        }`}
+          }`}
       >
         <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between gap-6">
 
@@ -59,19 +57,19 @@ export default function Navbar() {
             <img
               src="/logo.jpg"
               alt="Mall of Irikkur logo"
-              className="h-9 sm:h-10 w-auto object-contain rounded-lg
-                         ring-1 ring-white/10 group-hover:ring-white/25
-                         transition-all duration-300"
+              className={`h-9 sm:h-10 w-auto object-contain rounded-lg transition-all duration-300 ${scrolled ? 'ring-1 ring-gray-200' : 'ring-1 ring-white/10 group-hover:ring-white/25'
+                }`}
             />
-            {/* Brand name — styled like official logo */}
+            {/* Brand name */}
             <div className="flex flex-col leading-none">
-              <span className="font-sans text-white text-[15px] sm:text-[16px] leading-none tracking-tight">
+              <span className={`font-sans text-[15px] sm:text-[16px] leading-none tracking-tight transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'
+                }`}>
                 <span className="font-extrabold">Mall </span>
-                <span className="font-light opacity-80">Of </span>
+                <span className={`font-light ${scrolled ? 'text-gray-600' : 'opacity-80'}`}>Of </span>
                 <span className="font-extrabold">Irikkur</span>
               </span>
-              <span className="font-sans text-white/40 text-[9px] tracking-[0.22em]
-                               uppercase mt-[3px]">
+              <span className={`font-sans text-[9px] tracking-[0.22em] uppercase mt-[3px] transition-colors duration-300 ${scrolled ? 'text-gray-500' : 'text-white/40'
+                }`}>
                 Kannur · Kerala
               </span>
             </div>
@@ -79,29 +77,32 @@ export default function Navbar() {
 
           {/* ── Desktop Nav Links ── */}
           <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 flex-1 justify-center">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => goto(e, link.href)}
-                className={`relative px-3.5 xl:px-4 py-2 text-[12.5px] xl:text-[13px]
-                            font-medium tracking-wide rounded-lg
-                            transition-colors duration-200 whitespace-nowrap
-                            ${active === link.href
-                              ? 'text-white'
-                              : 'text-white/55 hover:text-white/90'
-                            }`}
-              >
-                {link.name}
-                {active === link.href && (
-                  <motion.span
-                    layoutId="underline"
-                    className="absolute bottom-1 left-3.5 right-3.5 h-[1.5px]
-                               bg-white/80 rounded-full"
-                  />
-                )}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = active === link.href;
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => goto(e, link.href)}
+                  className={`relative px-3.5 xl:px-4 py-2 text-[12.5px] xl:text-[13px]
+                              font-medium tracking-wide rounded-lg
+                              transition-colors duration-200 whitespace-nowrap
+                              ${scrolled
+                      ? (isActive ? 'text-brand-burgundy font-bold' : 'text-gray-600 hover:text-brand-burgundy')
+                      : (isActive ? 'text-white' : 'text-white/60 hover:text-white/95')
+                    }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <motion.span
+                      layoutId="underline"
+                      className={`absolute bottom-1 left-3.5 right-3.5 h-[1.5px] rounded-full ${scrolled ? 'bg-brand-burgundy' : 'bg-white/80'
+                        }`}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
 
           {/* ── Desktop CTA ── */}
@@ -109,21 +110,21 @@ export default function Navbar() {
             <a
               href="#location"
               onClick={(e) => goto(e, '#location')}
-              className="inline-flex items-center gap-2
+              className={`inline-flex items-center gap-2
                          px-5 py-2.5 rounded-full
-                         bg-white text-gray-900
                          text-[13px] font-bold tracking-wide
-                         hover:bg-white/90
-                         hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]
-                         hover:scale-[1.03] active:scale-[0.97]
-                         transition-all duration-300"
+                         transition-all duration-300
+                         ${scrolled
+                  ? 'bg-brand-burgundy text-white hover:bg-brand-burgundy-light shadow-sm'
+                  : 'bg-white text-gray-900 hover:bg-white/90 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.03] active:scale-[0.97]'
+                }`}
             >
               <MapPin className="w-3.5 h-3.5" />
               Visit Us
             </a>
           </div>
 
-          {/* ── Bare hamburger icon — no bg, no border ── */}
+          {/* ── Bare hamburger icon — adapts to scroll ── */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
@@ -132,15 +133,12 @@ export default function Navbar() {
                        w-10 h-10 gap-[5.5px] cursor-pointer
                        focus:outline-none group"
           >
-            <span className={`block h-[1.5px] bg-white rounded-full origin-center
-                              transition-all duration-300
-                              ${menuOpen ? 'w-[22px] rotate-45 translate-y-[7px]' : 'w-[22px]'}`} />
-            <span className={`block h-[1.5px] bg-white/70 rounded-full
-                              transition-all duration-300
-                              ${menuOpen ? 'w-0 opacity-0' : 'w-[16px]'}`} />
-            <span className={`block h-[1.5px] bg-white rounded-full origin-center
-                              transition-all duration-300
-                              ${menuOpen ? 'w-[22px] -rotate-45 -translate-y-[7px]' : 'w-[22px]'}`} />
+            <span className={`block h-[1.5px] rounded-full origin-center transition-all duration-300 ${scrolled ? 'bg-gray-900' : 'bg-white'
+              } ${menuOpen ? 'w-[22px] rotate-45 translate-y-[7px]' : 'w-[22px]'}`} />
+            <span className={`block h-[1.5px] rounded-full transition-all duration-300 ${scrolled ? 'bg-gray-500' : 'bg-white/70'
+              } ${menuOpen ? 'w-0 opacity-0' : 'w-[16px]'}`} />
+            <span className={`block h-[1.5px] rounded-full origin-center transition-all duration-300 ${scrolled ? 'bg-gray-900' : 'bg-white'
+              } ${menuOpen ? 'w-[22px] -rotate-45 -translate-y-[7px]' : 'w-[22px]'}`} />
           </button>
         </div>
       </header>
@@ -220,9 +218,9 @@ export default function Navbar() {
                                 px-4 py-3.5 rounded-xl mb-1
                                 transition-all duration-200
                                 ${active === link.href
-                                  ? 'bg-white/15 text-white'
-                                  : 'text-white/65 hover:text-white hover:bg-white/10'
-                                }`}
+                        ? 'bg-white/15 text-white'
+                        : 'text-white/65 hover:text-white hover:bg-white/10'
+                      }`}
                   >
                     {/* Active dot */}
                     <span

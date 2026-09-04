@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import {
   ShoppingBag,
   Utensils,
@@ -8,360 +8,311 @@ import {
   MapPin,
   Star,
   ArrowRight,
-  CheckCircle2,
+  Sparkles,
+  Clock,
+  ShieldCheck,
+  Building2,
+  Users,
 } from 'lucide-react';
 
-/* ─── Data ─────────────────────────────────────────────── */
+/* ─── Modern Luxury Offering Pillars ─── */
 const pillars = [
   {
     icon: ShoppingBag,
     title: 'Retail & Fashion',
-    desc: 'Curated apparel, footwear, and lifestyle brands under one roof.',
-    color: 'from-rose-500/10 to-brand-burgundy/5',
-    border: 'border-brand-burgundy/20',
-    iconBg: 'bg-brand-burgundy',
+    desc: 'Curated boutique apparel, bridal wear, footwear & everyday lifestyle essentials.',
+    gradient: 'from-brand-burgundy to-rose-700',
+    lightBg: 'group-hover:bg-rose-50/50',
+    tag: 'Fashion & Style',
   },
   {
     icon: Utensils,
     title: 'Food & Dining',
-    desc: 'Delicious Malabar treats & international coffee café culture.',
-    color: 'from-amber-500/10 to-orange-400/5',
-    border: 'border-amber-500/20',
-    iconBg: 'bg-amber-600',
+    desc: 'Artisan bakeries, specialty coffee culture & authentic Malabar food favorites.',
+    gradient: 'from-amber-600 to-amber-700',
+    lightBg: 'group-hover:bg-amber-50/50',
+    tag: 'Taste & Cafes',
   },
   {
     icon: HeartHandshake,
     title: 'Essential Services',
-    desc: 'Banking, wellness salons, modern offices & everyday conveniences.',
-    color: 'from-emerald-500/10 to-teal-400/5',
-    border: 'border-emerald-500/20',
-    iconBg: 'bg-emerald-600',
+    desc: 'Travel & Hajj agencies, physical rehab, opticians & modern creative hubs.',
+    gradient: 'from-emerald-700 to-teal-800',
+    lightBg: 'group-hover:bg-emerald-50/50',
+    tag: 'Daily Comfort',
   },
   {
     icon: Gamepad2,
     title: 'Entertainment',
-    desc: 'Arcade gaming, family celebration spaces & live event venues.',
-    color: 'from-violet-500/10 to-purple-400/5',
-    border: 'border-violet-500/20',
-    iconBg: 'bg-violet-700',
+    desc: 'Next-gen gaming lounge, social spaces & vibrant celebration zones for families.',
+    gradient: 'from-purple-700 to-indigo-800',
+    lightBg: 'group-hover:bg-purple-50/50',
+    tag: 'Fun & Leisure',
   },
 ];
 
 const highlights = [
-  'Irikkur\'s premier social destination',
-  'Family-friendly for all generations',
-  'Supporting local entrepreneurs',
-  'Modern & accessible design',
+  { value: '3', label: 'Spacious Floors', desc: 'Modern retail & dining zones' },
+  { value: '15+', label: 'Verified Outlets', desc: 'Top local & regional brands' },
+  { value: '100%', label: 'Family Friendly', desc: 'Accessible & climate controlled' },
+  { value: '2024', label: 'Established', desc: 'North Malabar landmark' },
 ];
 
-const stats = [
-  { value: '50+', label: 'Businesses', sub: 'Curated tenants' },
-  { value: '1K+', label: 'Daily Visitors', sub: 'Happy customers' },
-  { value: '#1', label: 'Destination', sub: 'North Malabar' },
-  { value: '∞', label: 'Memories', sub: 'Created daily' },
-];
-
-/* ─── Component ─────────────────────────────────────────── */
 export default function About() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '-8%']);
-
   return (
     <section
       id="about"
-      ref={sectionRef}
-      className="relative bg-white overflow-hidden py-14 sm:py-18 lg:py-24"
+      className="relative bg-white overflow-hidden py-16 sm:py-20 lg:py-24 text-brand-charcoal"
+      style={{
+        backgroundImage: `
+          radial-gradient(circle at 12% 16%, rgba(128, 20, 43, 0.05) 0%, transparent 45%),
+          radial-gradient(circle at 88% 84%, rgba(233, 196, 106, 0.08) 0%, transparent 45%),
+          radial-gradient(circle at 50% 50%, rgba(128, 20, 43, 0.02) 0%, transparent 60%),
+          linear-gradient(180deg, #ffffff 0%, #faf6f7 50%, #ffffff 100%)
+        `,
+      }}
     >
-      {/* ── Decorative Background Blobs ── */}
+      {/* Delicate architectural watermark grid */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-brand-burgundy/[0.04] rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-[600px] h-[600px] bg-brand-burgundy/[0.03] rounded-full blur-3xl" />
-        {/* Subtle grid lines */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-[0.025]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern
-              id="about-grid"
-              width="60"
-              height="60"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 60 0 L 0 0 0 60"
-                fill="none"
-                stroke="#80142B"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#about-grid)" />
-        </svg>
-      </div>
+        className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #80142B 1px, transparent 1px),
+            linear-gradient(to bottom, #80142B 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+        }}
+      />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Soft gradient ambient glow spheres */}
+      <div className="absolute top-10 -left-20 w-80 h-80 bg-brand-burgundy/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 -right-20 w-96 h-96 bg-brand-gold/[0.06] rounded-full blur-3xl pointer-events-none" />
 
-        {/* ── Section Label ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center mb-6"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-burgundy/20 bg-brand-cream text-brand-burgundy text-[11px] font-bold uppercase tracking-[0.18em]">
-            <MapPin className="w-3 h-3" />
-            About Us
-          </span>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* ── Section Headline ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center max-w-2xl mx-auto mb-10 sm:mb-12"
-        >
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-burgundy leading-[1.1] tracking-tight mb-5">
-            Where Irikkur{' '}
-            <span>Comes Together</span>
-          </h2>
-          <p className="text-brand-muted text-base sm:text-lg leading-relaxed font-normal">
-            A destination built for Irikkur's people and its future — where
-            commerce, culture, and community share the same beautiful space.
-          </p>
-        </motion.div>
-
-        {/* ── Two-Column Layout ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 items-center">
-
-          {/* ─ Left: Image Column ─ */}
+        {/* ── Section Header ── */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-cream border border-brand-burgundy/15 text-brand-burgundy text-xs font-bold uppercase tracking-[0.16em] mb-4 shadow-sm"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-brand-burgundy" />
+            <span>Discover Mall of Irikkur</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-burgundy font-heading tracking-tight leading-[1.15]"
+          >
+            Where Irikkur{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-burgundy via-brand-burgundy-light to-amber-600">
+              Comes Together
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.14 }}
+            className="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed max-w-2xl mx-auto"
+          >
+            A premier shopping, culinary, and social landmark designed for North Malabar. Experience world-class commerce and warm local hospitality under one roof.
+          </motion.p>
+        </div>
+
+        {/* ── Main Two-Column Showcase ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-14 sm:mb-16">
+
+          {/* ─ Left: Grand Architecture Card with Live Highlights (5 Cols) ─ */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 flex flex-col"
           >
-            {/* Main image card */}
-            <div className="relative rounded-[2rem] overflow-hidden shadow-[0_32px_80px_-20px_rgba(128,20,43,0.28)] group">
+            <div className="relative rounded-[2rem] overflow-hidden border border-brand-burgundy/15 shadow-[0_20px_50px_rgba(128,20,43,0.12)] group h-full flex flex-col justify-end min-h-[420px] sm:min-h-[480px] lg:min-h-[520px]">
+              {/* Grand Interior Image */}
               <img
                 src="/about-mall-interior.jpg"
-                alt="Grand interior of Mall of Irikkur – soaring atrium with chandeliers and luxury retail"
-                className="w-full h-[320px] sm:h-[400px] object-cover object-center group-hover:scale-[1.04] transition-transform duration-[900ms] ease-out"
+                alt="Mall of Irikkur Grand Interior Atrium"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out select-none"
                 loading="lazy"
               />
 
-              {/* Gradient scrim — stronger at bottom for legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+              {/* Sophisticated gradient scrim */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20 pointer-events-none" />
 
-              {/* ── Top-right: Star rating badge ── */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.4 }}
-                className="absolute top-4 right-4 flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-white/80"
-              >
+              {/* Top Floating Glass Badges */}
+              <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 text-xs font-semibold text-brand-charcoal shadow-md">
+                <MapPin className="w-3.5 h-3.5 text-brand-burgundy" />
+                <span>Irikkur, Kannur</span>
+              </div>
+
+              <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 text-xs text-brand-charcoal shadow-md">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                    <Star key={i} className="w-3 h-3 text-amber-500 fill-amber-500" />
                   ))}
                 </div>
-                <div className="h-4 w-px bg-gray-200" />
-                <span className="text-sm font-extrabold text-brand-charcoal">4.9</span>
-                <span className="text-[11px] text-brand-muted font-medium">(2.4k)</span>
-              </motion.div>
+                <span className="font-extrabold text-xs text-brand-charcoal ml-0.5">4.9</span>
+                <span className="text-[11px] text-brand-muted hidden sm:inline">(2.4k+)</span>
+              </div>
 
-              {/* ── Top-left: Open Now pill ── */}
-
-
-              {/* ── Bottom: Branded identity overlay ── */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.65, duration: 0.5 }}
-                className="absolute bottom-0 left-0 right-0 px-5 py-4 bg-gradient-to-r from-brand-burgundy-deep/95 to-brand-burgundy/90 backdrop-blur-md"
-              >
-                <div className="flex items-center justify-between">
-                  {/* Left: Brand name + tagline */}
+              {/* Bottom Branded Overlay Card with Inset Stats */}
+              <div className="relative z-10 p-5 sm:p-6 bg-gradient-to-t from-brand-burgundy-deep/95 via-brand-burgundy-deep/85 to-transparent backdrop-blur-sm text-white">
+                <div className="flex items-center justify-between mb-3">
                   <div>
-                    <p className="font-display text-lg font-bold text-white leading-tight tracking-wide">
+                    <h3 className="text-xl font-bold font-heading text-white tracking-wide">
                       Mall of Irikkur
-                    </p>
-                    <p className="text-white/55 text-[11px] font-medium tracking-[0.12em] mt-0.5 uppercase">
-                      North Malabar's Premier Destination
+                    </h3>
+                    <p className="text-xs text-white/70 font-medium mt-0.5">
+                      North Malabar's Premier Lifestyle Landmark
                     </p>
                   </div>
-                  {/* Right: Decorative emblem */}
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <div className="w-px h-8 bg-white/20" />
-                    <div className="flex flex-col items-center px-3">
-                      <span className="text-[10px] text-white/40 font-semibold uppercase tracking-widest">Est.</span>
-                      <span className="text-white font-extrabold font-heading text-lg leading-none">2024</span>
-                    </div>
+                  <div className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-semibold text-amber-300">
+                    Est. 2024
                   </div>
                 </div>
-              </motion.div>
+
+                {/* Inline 3-Column Highlights */}
+                <div className="pt-3 border-t border-white/15 grid grid-cols-3 gap-2 text-center">
+                  <div className="py-1">
+                    <span className="block text-xl font-extrabold text-amber-300 leading-tight">3</span>
+                    <span className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Floors</span>
+                  </div>
+                  <div className="py-1 border-x border-white/10">
+                    <span className="block text-xl font-extrabold text-amber-300 leading-tight">15+</span>
+                    <span className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Brands</span>
+                  </div>
+                  <div className="py-1">
+                    <span className="block text-xl font-extrabold text-amber-300 leading-tight">100%</span>
+                    <span className="text-[10px] text-white/60 uppercase tracking-wider font-semibold">Family Fun</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ─ Right: Narrative & Redesigned "What We Offer" Pillars (7 Cols) ─ */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-7 flex flex-col justify-between"
+          >
+            {/* Story Intro */}
+            <div className="mb-6">
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.2em] text-brand-burgundy inline-block mb-1.5">
+                Redefining the Shopping Experience
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-brand-charcoal font-heading leading-snug mb-3">
+                Modern Amenities, Handpicked Stores &amp; Community Spirit
+              </h3>
+              <p className="text-sm text-brand-muted leading-relaxed">
+                Thoughtfully crafted across multiple expansive floors, <strong className="text-brand-burgundy font-semibold">Mall of Irikkur</strong> unites verified retail outlets, gourmet confectioneries, and essential family conveniences. Whether shopping for celebrations or meeting friends over coffee, experience the best of modern North Malabar.
+              </p>
             </div>
 
-            {/* Decorative corner accents */}
-            <div className="absolute -top-4 -left-4 w-16 h-16 rounded-2xl border-2 border-brand-burgundy/20 bg-brand-cream -z-10 hidden lg:block" />
-            <div className="absolute -bottom-5 -right-5 w-24 h-24 rounded-full bg-brand-burgundy/6 -z-10 hidden lg:block" />
+            {/* ── Redesigned "What We Offer" Section ── */}
+            <div className="mb-6">
+              <div className="flex items-center gap-3 mb-3.5">
+                <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-brand-charcoal">
+                  What We Offer
+                </span>
+                <div className="flex-1 h-px bg-gradient-to-r from-brand-burgundy/25 via-brand-burgundy/10 to-transparent" />
+              </div>
+
+              {/* 4 Premium Branded Offering Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {pillars.map((pillar, idx) => {
+                  const Icon = pillar.icon;
+                  return (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ y: -3 }}
+                      transition={{ duration: 0.2 }}
+                      className={`group relative p-4 rounded-2xl bg-white border border-brand-burgundy/10 hover:border-brand-burgundy/30 shadow-[0_4px_20px_rgba(128,20,43,0.04)] hover:shadow-[0_14px_35px_rgba(128,20,43,0.1)] transition-all duration-300 flex items-start gap-3.5 overflow-hidden ${pillar.lightBg}`}
+                    >
+                      {/* Top subtle highlight line */}
+                      <div className="absolute top-0 left-4 right-4 h-[2px] bg-gradient-to-r from-transparent via-brand-burgundy/20 to-transparent group-hover:via-brand-burgundy transition-all duration-500" />
+
+                      {/* Icon Container with Rich Gradient */}
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${pillar.gradient} text-white flex items-center justify-center shrink-0 shadow-md shadow-brand-burgundy/15 group-hover:scale-105 transition-transform duration-300`}>
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+
+                      {/* Card Content */}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-1 mb-0.5">
+                          <h4 className="text-sm font-bold text-brand-charcoal group-hover:text-brand-burgundy transition-colors leading-tight">
+                            {pillar.title}
+                          </h4>
+                        </div>
+                        <p className="text-xs text-brand-muted leading-relaxed">
+                          {pillar.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* ── Action Buttons ── */}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="#businesses"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-burgundy text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-burgundy-hover transition-all duration-300 shadow-[0_8px_20px_rgba(128,20,43,0.25)] hover:shadow-[0_12px_28px_rgba(128,20,43,0.35)] active:scale-95"
+              >
+                <span>Explore All Stores</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="#location"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-cream hover:bg-white border border-brand-burgundy/20 text-brand-burgundy font-semibold text-xs transition-all duration-300 shadow-sm hover:shadow"
+              >
+                <Clock className="w-3.5 h-3.5 text-brand-burgundy" />
+                <span>Hours &amp; Location</span>
+              </a>
+            </div>
+
           </motion.div>
 
-
-          {/* ─ Right: Content Column ─ */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full flex flex-col justify-center"
-          >
-            <h3 className="font-heading text-[18px] sm:text-xl lg:text-2xl font-bold text-brand-charcoal leading-snug mb-3">
-              Redefining Commerce{' '}
-              <span className="text-brand-burgundy">&amp; Lifestyle</span>{' '}
-              in North Malabar
-            </h3>
-
-            <p className="text-brand-charcoal/85 text-sm sm:text-base leading-[1.75] mb-3 font-normal">
-              Designed as Irikkur's premier shopping, dining, and social
-              destination,{' '}
-              <strong className="text-brand-burgundy font-semibold">
-                Mall of Irikkur
-              </strong>{' '}
-              unites world-class retail spaces with local entrepreneurship. We
-              provide a modern, comfortable, and family-friendly environment for
-              visitors of all generations.
-            </p>
-
-            <p className="text-brand-muted text-[13px] leading-[1.7] mb-5 font-normal">
-              Whether you're shopping for traditional bridal wear, catching up
-              over a fresh Malabar coffee, or attending vibrant community
-              events — Mall of Irikkur brings everything under one beautiful
-              roof.
-            </p>
-
-            {/* Highlights checklist */}
-            <ul className="space-y-2 mb-6">
-              {highlights.map((item, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: 10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                  className="flex items-center gap-2.5 text-sm text-brand-charcoal font-medium"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-brand-burgundy shrink-0" />
-                  {item}
-                </motion.li>
-              ))}
-            </ul>
-
-            {/* CTA Link */}
-            <motion.a
-              href="#businesses"
-              whileHover={{ x: 4 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="inline-flex items-center gap-2 text-brand-burgundy font-bold text-sm uppercase tracking-wider group"
-            >
-              <span>Explore Our Businesses</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </motion.a>
-          </motion.div>
         </div>
 
-        {/* ── Offering Pillars Grid ── */}
+        {/* ── Bottom Stat Badges Strip (Generous, Grand & Well-spaced) ── */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-10 sm:mt-14"
+          transition={{ duration: 0.6 }}
+          className="rounded-3xl bg-gradient-to-r from-brand-burgundy via-brand-burgundy-dark to-brand-burgundy p-6 sm:p-8 text-white shadow-[0_20px_50px_rgba(128,20,43,0.2)]"
         >
-          {/* Divider with label */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-brand-burgundy/20" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-muted whitespace-nowrap">
-              What We Offer
-            </span>
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-brand-burgundy/20" />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {pillars.map((pillar, idx) => {
-              const Icon = pillar.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 + idx * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className={`group relative p-4 rounded-2xl bg-gradient-to-br ${pillar.color} border ${pillar.border} hover:shadow-[0_12px_40px_rgba(128,20,43,0.1)] transition-all duration-300 cursor-default`}
-                >
-                  {/* Icon */}
-                  <div
-                    className={`w-9 h-9 rounded-xl ${pillar.iconBg} flex items-center justify-center mb-3 shadow-md group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  {/* Text */}
-                  <h4 className="font-bold text-brand-charcoal text-[15px] mb-1.5 leading-tight">
-                    {pillar.title}
-                  </h4>
-                  <p className="text-brand-muted text-[13px] leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                  {/* Subtle corner glow on hover */}
-                  <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-brand-burgundy/0 group-hover:ring-brand-burgundy/15 transition-all duration-300 pointer-events-none" />
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        {/* ── Stats Bar ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-8 sm:mt-10 rounded-2xl bg-brand-burgundy overflow-hidden"
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/10 divide-y lg:divide-y-0">
-            {stats.map((stat, idx) => (
-              <motion.div
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/15">
+            {highlights.map((item, idx) => (
+              <div
                 key={idx}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
-                className="flex flex-col items-center justify-center py-7 px-4 group hover:bg-white/5 transition-colors duration-300"
+                className={`flex flex-col items-center text-center ${idx > 0 ? 'pt-6 lg:pt-0' : ''}`}
               >
-                <span className="font-heading text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-none mb-1">
-                  {stat.value}
+                <span className="font-heading text-3xl sm:text-4xl font-black text-amber-300 tracking-tight leading-none mb-1.5">
+                  {item.value}
                 </span>
-                <span className="text-white/90 font-semibold text-sm mt-1">
-                  {stat.label}
+                <span className="text-white font-bold text-sm tracking-wide">
+                  {item.label}
                 </span>
-                <span className="text-white/45 text-xs font-medium mt-0.5 tracking-wide">
-                  {stat.sub}
+                <span className="text-white/60 text-xs font-normal mt-0.5">
+                  {item.desc}
                 </span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
