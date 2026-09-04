@@ -232,7 +232,6 @@ export default function Gallery() {
         </div>
 
         <p className="text-xs text-brand-muted font-medium flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-brand-burgundy" />
           <span>Swipe or click any memory to view high-resolution photo</span>
         </p>
       </div>

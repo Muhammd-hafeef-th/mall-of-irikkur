@@ -62,30 +62,23 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative bg-white overflow-hidden py-16 sm:py-20 lg:py-24 text-brand-charcoal"
+      className="relative overflow-hidden py-16 sm:py-20 lg:py-24 text-brand-charcoal"
       style={{
+        backgroundColor: '#FAF5F6',
         backgroundImage: `
-          radial-gradient(circle at 12% 16%, rgba(128, 20, 43, 0.05) 0%, transparent 45%),
-          radial-gradient(circle at 88% 84%, rgba(233, 196, 106, 0.08) 0%, transparent 45%),
-          radial-gradient(circle at 50% 50%, rgba(128, 20, 43, 0.02) 0%, transparent 60%),
-          linear-gradient(180deg, #ffffff 0%, #faf6f7 50%, #ffffff 100%)
-        `,
+          radial-gradient(ellipse at 50% 0%, rgba(233, 196, 106, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse at 85% 65%, rgba(128, 20, 43, 0.035) 0%, transparent 50%),
+          radial-gradient(ellipse at 15% 45%, rgba(128, 20, 43, 0.035) 0%, transparent 50%),
+          linear-gradient(180deg, #FAF4F5 0%, #FFFFFF 50%, #FAF4F5 100%)
+        `
       }}
     >
-      {/* Delicate architectural watermark grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.035]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #80142B 1px, transparent 1px),
-            linear-gradient(to bottom, #80142B 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
-        }}
-      />
+      {/* ── Top and bottom transition hairlines ── */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent pointer-events-none" />
 
-      {/* Soft gradient ambient glow spheres */}
-      <div className="absolute top-10 -left-20 w-80 h-80 bg-brand-burgundy/[0.04] rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient Glows */}
+      <div className="absolute top-10 -left-20 w-80 h-80 bg-brand-burgundy/[0.03] rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-96 h-96 bg-brand-gold/[0.06] rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

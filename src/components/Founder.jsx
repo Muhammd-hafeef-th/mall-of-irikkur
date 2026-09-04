@@ -28,6 +28,14 @@ const founders = [
     message:
       '"Every brick of Mall of Irikkur carries the dreams of Irikkur\'s people. We created a landmark — a proud symbol of what North Malabar can achieve."',
   },
+  {
+    id: 4,
+    name: 'Musthafa Kamal K',
+    role: 'Director & Co-Founder',
+    image: '/founder-4.jpg',
+    message:
+      '"Our collective aspiration was to create more than spaces; it was to build a home of pride, connection, and prosperity for every generation of Irikkur."',
+  },
 ];
 
 /* ─── Desktop / Tablet Card ─────────────────────────────── */
@@ -37,8 +45,8 @@ function FounderCard({ founder, index }) {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
-      className="group flex flex-col"
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group flex flex-col h-full"
     >
       <div className="relative mb-4">
         <div className="absolute inset-0 rounded-2xl bg-brand-burgundy/8 scale-[1.04] -z-10 group-hover:scale-[1.07] transition-transform duration-500" />
@@ -53,16 +61,16 @@ function FounderCard({ founder, index }) {
         </div>
       </div>
       <div className="mb-3">
-        <h3 className="font-heading text-xl lg:text-[22px] font-extrabold text-brand-burgundy leading-tight">
+        <h3 className="font-heading text-lg lg:text-[20px] font-extrabold text-brand-burgundy leading-tight">
           {founder.name}
         </h3>
-        <span className="text-[12px] font-semibold text-brand-muted uppercase tracking-widest">
+        <span className="text-[11px] lg:text-[12px] font-semibold text-brand-muted uppercase tracking-wider block mt-1">
           {founder.role}
         </span>
       </div>
-      <div className="relative flex-1 px-4 py-3 rounded-xl bg-brand-cream border border-brand-burgundy/10 group-hover:border-brand-burgundy/22 transition-colors duration-300">
-        <Quote className="absolute top-2 right-3 w-6 h-6 text-brand-burgundy/10 rotate-180" />
-        <p className="text-[14px] text-brand-charcoal/75 leading-[1.7] italic font-normal">
+      <div className="relative flex-1 px-4 py-3 rounded-xl bg-brand-cream border border-brand-burgundy/10 group-hover:border-brand-burgundy/22 transition-colors duration-300 flex flex-col justify-start">
+        <Quote className="absolute top-2 right-3 w-5 h-5 text-brand-burgundy/10 rotate-180" />
+        <p className="text-[13px] lg:text-[13.5px] text-brand-charcoal/75 leading-[1.65] italic font-normal">
           {founder.message}
         </p>
       </div>
@@ -234,14 +242,25 @@ export default function Founder() {
   return (
     <section
       id="founder"
-      className="relative bg-white overflow-hidden py-14 sm:py-20 lg:py-28"
+      className="relative overflow-hidden py-14 sm:py-20 lg:py-28 text-brand-charcoal"
+      style={{
+        backgroundColor: '#FAF5F6',
+        backgroundImage: `
+          radial-gradient(ellipse at 50% 0%, rgba(233, 196, 106, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse at 85% 65%, rgba(128, 20, 43, 0.035) 0%, transparent 50%),
+          radial-gradient(ellipse at 15% 45%, rgba(128, 20, 43, 0.035) 0%, transparent 50%),
+          linear-gradient(180deg, #FAF4F5 0%, #FFFFFF 50%, #FAF4F5 100%)
+        `
+      }}
     >
-      {/* Background accents */}
+      {/* ── Top and bottom transition hairlines ── */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent pointer-events-none" />
+
+      {/* Background ambient accents */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent" />
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-brand-burgundy/[0.03] rounded-full blur-3xl" />
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-burgundy/[0.03] rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-gold/[0.06] rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto 2xl:max-w-[1400px]">
@@ -253,9 +272,9 @@ export default function Founder() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-burgundy/20 bg-brand-cream text-brand-burgundy text-[11px] font-bold uppercase tracking-[0.18em] mb-4"
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-brand-burgundy/20 bg-brand-cream text-brand-burgundy text-xs sm:text-sm font-bold uppercase tracking-[0.18em] mb-4 shadow-sm"
           >
-            <Quote className="w-3 h-3" />
+            <Quote className="w-3.5 h-3.5" />
             The Founders
           </motion.span>
 
@@ -264,9 +283,9 @@ export default function Founder() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-burgundy tracking-tight leading-[1.1] mb-3"
+            className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-burgundy tracking-tight leading-[1.1] mb-4"
           >
-            The Vision Behind Mall of Irikkur
+            <span className="text-brand-charcoal">The Vision</span> Behind Mall of Irikkur
           </motion.h2>
 
           <motion.p
@@ -276,7 +295,7 @@ export default function Founder() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-brand-muted text-sm sm:text-base lg:text-lg max-w-lg mx-auto leading-relaxed"
           >
-            Three leaders. One shared dream. Rooted in Irikkur, built for the future.
+            Four visionary leaders. One shared dream. Rooted in Irikkur, built for the future.
           </motion.p>
         </div>
 
@@ -286,7 +305,7 @@ export default function Founder() {
         </div>
 
         {/* ── TABLET + DESKTOP: Grid ── */}
-        <div className="hidden sm:grid sm:grid-cols-3 gap-6 lg:gap-10 xl:gap-12 px-4 sm:px-6 lg:px-8">
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6 xl:gap-8 px-4 sm:px-6 lg:px-8">
           {founders.map((founder, i) => (
             <FounderCard key={founder.id} founder={founder} index={i} />
           ))}

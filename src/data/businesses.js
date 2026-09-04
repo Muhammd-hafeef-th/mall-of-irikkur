@@ -5,22 +5,26 @@ export const categories = [
   "Electronics",
   "Healthcare",
   "Services",
-  "Entertainment"
+  "Entertainment",
+  "Hyper Market",
+  "Banking",
+  "Jewellery",
+  "Salon"
 ];
 
 export const businessesData = [
   {
     id: 1,
-    name: "Arcure",
-    category: "Services",
-    tagline: "Design • Build • Architecture",
-    description: "Specialized in contemporary architectural design, bespoke luxury interiors, and turnkey building construction.",
-    logo: "/Shops/Arcure.jpg",
+    name: "Metro Daily HyperMarket",
+    category: "Hyper Market",
+    tagline: "Everyday Essentials Made Easy",
+    description: "A convenient supermarket offering everyday essentials, quality products, great value, and a wide range of groceries and household needs.",
+    logo: "/Shops/Metro.jpg",
     logoBg: "#ffffff",
-    floor: "2nd Floor - Suite 204",
-    phone: "+91 98470 12001",
-    timing: "9:30 AM - 7:30 PM",
-    badge: "Architecture & Design"
+    floor: "Ground Floor",
+    phone: "+91 95269 69918",
+    timing: "9:00 AM - 9:00 PM",
+    badge: "Supermarket"
   },
   {
     id: 2,
@@ -30,23 +34,23 @@ export const businessesData = [
     description: "Freshly baked handcrafted breads, gourmet pastries, celebration cakes, and delicious oven-fresh snacks.",
     logo: "/Shops/Bake Story.jpg",
     logoBg: "#ffffff",
-    floor: "Ground Floor - Shop 08",
+    floor: "Ground Floor",
     phone: "+91 98470 12002",
     timing: "9:00 AM - 10:30 PM",
     badge: "Artisan Bakery"
   },
   {
     id: 3,
-    name: "Chickart",
-    category: "Food & Dining",
-    tagline: "Crispy Fried Chicken & Fast Food",
-    description: "Your hunger's happy ending. Signature golden crispy fried chicken, juicy burgers, wraps, and savory quick bites.",
-    logo: "/Shops/Chickart_1_page_1.png",
-    logoBg: "#eb441b",
-    floor: "Food Court - 3rd Floor",
-    phone: "+91 81100 64006",
+    name: "LobbyX",
+    category: "Entertainment",
+    tagline: "Next-Gen Gaming & Social Lounge",
+    description: "Premier esports and gaming lounge with next-gen consoles, VR experiences, and youth social hub.",
+    logo: "/Shops/LobbyX.jpeg",
+    logoBg: "#050505",
+    floor: "2nd Floor",
+    phone: "+91 98470 12008",
     timing: "11:00 AM - 11:00 PM",
-    badge: "Food Court Favorite"
+    badge: "Gaming Lounge"
   },
   {
     id: 4,
@@ -56,7 +60,7 @@ export const businessesData = [
     description: "Professional auto detailing studio offering ceramic coatings, interior deep cleaning, and premium exterior care.",
     logo: "/Shops/Crystal_Shine_page_1.png",
     logoBg: "#ffffff",
-    floor: "Lower Ground - Parking Level",
+    floor: "1st Floor",
     phone: "+91 98470 12004",
     timing: "9:00 AM - 8:00 PM",
     badge: "Auto Detailing"
@@ -69,7 +73,7 @@ export const businessesData = [
     description: "Curated women's fashion, stylish youth wear, festive collections, and contemporary apparel.",
     logo: "/Shops/Elegance_page_1.png",
     logoBg: "#ffffff",
-    floor: "1st Floor - Shop 112",
+    floor: "1st Floor",
     phone: "+91 98470 12005",
     timing: "10:00 AM - 9:30 PM",
     badge: "Fashion Hub"
@@ -82,7 +86,7 @@ export const businessesData = [
     description: "Authorised premium destination for iPhones, MacBooks, iPads, Apple Watches, audio gear, and accessories.",
     logo: "/Shops/Iweb.jpeg",
     logoBg: "#ffffff",
-    floor: "Ground Floor - Shop 14",
+    floor: "Ground Floor",
     phone: "+91 98470 12006",
     timing: "10:00 AM - 9:30 PM",
     badge: "Premium Reseller"
@@ -95,24 +99,25 @@ export const businessesData = [
     description: "Luxurious designer abayas, jalabiyas, elegant hijabs, modest festive couture, and signature perfumes.",
     logo: "/Shops/Layali_page_1.png",
     logoBg: "#ece4d8",
-    floor: "1st Floor - Shop 106",
+    floor: "Ground Floor",
     phone: "+91 98470 12007",
     timing: "10:00 AM - 9:30 PM",
     badge: "Luxury Boutique"
   },
   {
     id: 8,
-    name: "LobbyX",
-    category: "Entertainment",
-    tagline: "Next-Gen Gaming & Social Lounge",
-    description: "Premier esports and gaming lounge with next-gen consoles, VR experiences, and youth social hub.",
-    logo: "/Shops/LobbyX.jpeg",
-    logoBg: "#050505",
-    floor: "3rd Floor - Zone 02",
-    phone: "+91 98470 12008",
+    name: "Chickart",
+    category: "Food & Dining",
+    tagline: "Crispy Fried Chicken & Fast Food",
+    description: "Your hunger's happy ending. Signature golden crispy fried chicken, juicy burgers, wraps, and savory quick bites.",
+    logo: "/Shops/Chickart_1_page_1.png",
+    logoBg: "#eb441b",
+    floor: "Food Court - 2nd Floor",
+    phone: "+91 81100 64006",
     timing: "11:00 AM - 11:00 PM",
-    badge: "Gaming Lounge"
+    badge: "Food Court Favorite"
   },
+
   {
     id: 9,
     name: "MRA Fashion",
@@ -121,7 +126,7 @@ export const businessesData = [
     description: "Exquisite bridal collections, designer sarees, wedding lehengas, and handcrafted festive party attire.",
     logo: "/Shops/MRA.jpg",
     logoBg: "#050505",
-    floor: "1st Floor - Shop 118",
+    floor: "1st Floor",
     phone: "+91 98470 12009",
     timing: "10:00 AM - 9:30 PM",
     badge: "Bridal Couture"
@@ -134,7 +139,7 @@ export const businessesData = [
     description: "Artisan specialty coffees, refreshing coolers, gourmet toasts, pastries, and tranquil cafe ambiance.",
     logo: "/Shops/Meraki_1_page_1.png",
     logoBg: "#f6ede1",
-    floor: "Ground Floor - Central Atrium",
+    floor: "Food Court - 2nd Floor",
     phone: "+91 98470 12010",
     timing: "9:00 AM - 10:30 PM",
     badge: "Artisan Cafe"
@@ -147,7 +152,7 @@ export const businessesData = [
     description: "Professional photography studio, personalized luxury gifting, custom 3D crafts, and creative printing.",
     logo: "/Shops/Smile Please.jpeg",
     logoBg: "#050505",
-    floor: "2nd Floor - Shop 210",
+    floor: "2nd Floor",
     phone: "+91 98470 12011",
     timing: "9:30 AM - 9:00 PM",
     badge: "Studio & Gifts"
@@ -160,7 +165,7 @@ export const businessesData = [
     description: "Computerized eye checkups, international branded spectacle frames, polarized sunglasses, and prescription lenses.",
     logo: "/Shops/Specs_mart_page_1.png",
     logoBg: "#ffffff",
-    floor: "Ground Floor - Shop 06",
+    floor: "1st Floor",
     phone: "+91 98470 12012",
     timing: "9:30 AM - 9:00 PM",
     badge: "Opticals & Vision"
@@ -173,7 +178,7 @@ export const businessesData = [
     description: "High-end luxury statement fashion, premium designer accessories, and lifestyle statement pieces.",
     logo: "/Shops/TABA.jpeg",
     logoBg: "#050505",
-    floor: "1st Floor - Shop 102",
+    floor: "1st Floor",
     phone: "+91 98470 12013",
     timing: "10:00 AM - 9:30 PM",
     badge: "Luxury Brand"
@@ -186,7 +191,7 @@ export const businessesData = [
     description: "Authorized pilgrimage services for Hajj & Umrah, domestic and international air ticketing, and worldwide visa guidance.",
     logo: "/Shops/TAJ TOURS AND TRAVELS.jpg",
     logoBg: "#ffffff",
-    floor: "2nd Floor - Suite 215",
+    floor: "2nd Floor",
     phone: "+91 70340 13646",
     timing: "9:00 AM - 8:00 PM",
     badge: "Tours & Travels"
@@ -199,11 +204,79 @@ export const businessesData = [
     description: "Comprehensive physiotherapy clinic, sports injury rehabilitation, spine therapy, and advanced pain management.",
     logo: "/Shops/Thrive_page_1.png",
     logoBg: "#ffffff",
-    floor: "2nd Floor - Suite 220",
+    floor: "2nd Floor",
     phone: "+91 98470 12015",
     timing: "8:00 AM - 8:30 PM",
     badge: "Physical Therapy"
+  },
+  {
+    id: 16,
+    name: "Avilo",
+    category: "Food & Dining",
+    tagline: "Premium Banana Avil Milk",
+    description: "Premium banana avil milk made with pure cow milk, rich ingredients, and 60+ unique flavours for a refreshing and luxurious taste experience.",
+    logo: "/Shops/Avilo.png",
+    logoBg: "#ffffff",
+    floor: "Food Court - 2nd Floor",
+    phone: "+91 790 9194 101",
+    timing: "10:00 AM - 10:00 PM",
+    badge: "Premium Avil Milk"
+  },
+
+  {
+
+    id: 17,
+    name: "Arcure",
+    category: "Services",
+    tagline: "Design • Build • Architecture",
+    description: "Specialized in contemporary architectural design, bespoke luxury interiors, and turnkey building construction.",
+    logo: "/Shops/Arcure.jpg",
+    logoBg: "#ffffff",
+    floor: "2nd Floor",
+    phone: "+91 98470 12001",
+    timing: "9:30 AM - 7:30 PM",
+    badge: "Architecture & Design"
+  },
+  {
+    id: 18,
+    name: "South Indian Bank",
+    category: "Banking",
+    tagline: "Experience Next-Gen Banking",
+    description: "A leading private sector bank offering a comprehensive range of banking and financial services, with convenient digital banking solutions and personalized customer service.",
+    logo: "/Shops/South_Indian_Bank.webp",
+    logoBg: "#D71920",
+    floor: "1st Floor",
+    phone: "+91 460 229 7100",
+    timing: "10:00 AM - 4:00 PM",
+    badge: "Banking Services"
+  },
+  {
+    id: 19,
+    name: "Dream Jewellery",
+    category: "Jewellery",
+    tagline: "Where Every Dream Sparkles",
+    description: "A premium jewellery destination offering beautifully crafted designs and timeless pieces for every special occasion. Coming soon to Mall of Irikkur.",
+    logo: "/Shops/Dream_Jewellery.png",
+    logoBg: "#000000",
+    floor: "1st Floor",
+    phone: "",
+    timing: "Opening Soon",
+    badge: "Coming Soon"
+  },
+  {
+    id: 20,
+    name: "Beauty Lab",
+    category: "Salon",
+    tagline: "Style • Care • Confidence",
+    description: "A premium unisex beauty parlor offering professional hair, beauty, and grooming services for both men and women. Coming soon to Mall of Irikkur.",
+    logo: "/Shops/Beauty_Lab.png",
+    logoBg: "#000000",
+    floor: "2nd Floor",
+    phone: "",
+    timing: "Opening Soon",
+    badge: "Coming Soon"
   }
+
 ];
 
 export const featuredBusinessData = {

@@ -7,9 +7,31 @@ export default function Location() {
   const googleMapsDirectionsUrl = "https://maps.google.com/?q=Irikkur+Kannur+Kerala";
 
   return (
-    <section id="location" className="py-24 bg-white text-brand-charcoal relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+    <section
+      id="location"
+      className="py-24 text-brand-charcoal relative overflow-hidden"
+      style={{
+        backgroundColor: '#FAF5F6',
+        backgroundImage: `
+          radial-gradient(ellipse at 50% 0%, rgba(233, 196, 106, 0.08) 0%, transparent 60%),
+          radial-gradient(ellipse at 85% 65%, rgba(128, 20, 43, 0.035) 0%, transparent 50%),
+          radial-gradient(ellipse at 15% 45%, rgba(128, 20, 43, 0.035) 0%, transparent 50%),
+          linear-gradient(180deg, #FAF4F5 0%, #FFFFFF 50%, #FAF4F5 100%)
+        `
+      }}
+    >
+      {/* ── Top and bottom transition hairlines ── */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-burgundy/15 to-transparent pointer-events-none" />
+
+      {/* Background ambient accents */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-brand-gold/[0.06] rounded-full blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-brand-burgundy/[0.03] rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
@@ -17,10 +39,10 @@ export default function Location() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-cream border border-brand-burgundy/10 text-brand-burgundy text-xs font-bold uppercase tracking-wider mb-4"
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-cream border border-brand-burgundy/15 text-brand-burgundy text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-sm"
           >
-            <MapPin className="w-3.5 h-3.5 text-brand-burgundy" />
-            <span>LOCATION & VISITOR GUIDE</span>
+            <MapPin className="w-4 h-4 text-brand-burgundy" />
+            <span>LOCATION &amp; VISITOR GUIDE</span>
           </motion.div>
 
           <motion.h2
@@ -28,9 +50,9 @@ export default function Location() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-5xl font-extrabold text-brand-burgundy font-heading tracking-tight mb-4"
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-burgundy font-heading tracking-tight mb-4"
           >
-            Find Us in Irikkur
+            <span className="text-brand-charcoal">Find Us</span> in Irikkur
           </motion.h2>
 
           <motion.p
@@ -38,7 +60,7 @@ export default function Location() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-brand-muted font-normal text-balance"
+            className="text-base sm:text-lg lg:text-xl text-brand-muted font-normal text-balance leading-relaxed"
           >
             Visit Mall of Irikkur and experience the destination for yourself.
           </motion.p>
@@ -46,7 +68,7 @@ export default function Location() {
 
         {/* Two-Column Location Details & Interactive Google Map */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left Column: Contact Cards & Address */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -72,7 +94,7 @@ export default function Location() {
 
               {/* Info Rows */}
               <div className="space-y-4 text-sm text-brand-charcoal">
-                
+
                 {/* Physical Address */}
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10">
                   <MapPin className="w-5 h-5 text-brand-burgundy shrink-0 mt-0.5" />
@@ -154,7 +176,7 @@ export default function Location() {
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full filter saturate-[1.1]"
               />
-              
+
               {/* Map Floating Header Badge */}
               <div className="absolute top-4 left-4 p-3 rounded-2xl bg-white/90 backdrop-blur-md shadow-lg border border-brand-burgundy/10 hidden sm:flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-emerald-600" />

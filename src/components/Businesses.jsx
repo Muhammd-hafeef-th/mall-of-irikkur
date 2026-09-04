@@ -1,7 +1,45 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Store, MapPin, Phone, Clock, Search, X, ArrowUpRight, ChevronLeft, ChevronRight, LayoutGrid, SlidersHorizontal } from 'lucide-react';
+import {
+  Store,
+  MapPin,
+  Phone,
+  Clock,
+  Search,
+  X,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  LayoutGrid,
+  SlidersHorizontal,
+  Sparkles,
+  Shirt,
+  UtensilsCrossed,
+  Smartphone,
+  HeartPulse,
+  Briefcase,
+  Gamepad2,
+  ShoppingCart,
+  Landmark,
+  Gem,
+  Scissors,
+  RotateCcw
+} from 'lucide-react';
 import { categories, businessesData } from '../data/businesses';
+
+const CATEGORY_ICONS = {
+  All: Sparkles,
+  Fashion: Shirt,
+  'Food & Dining': UtensilsCrossed,
+  Electronics: Smartphone,
+  Healthcare: HeartPulse,
+  Services: Briefcase,
+  Entertainment: Gamepad2,
+  'Hyper Market': ShoppingCart,
+  Banking: Landmark,
+  Jewellery: Gem,
+  Salon: Scissors,
+};
 
 export default function Businesses() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -13,6 +51,69 @@ export default function Businesses() {
   const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef(null);
   const [maxIndex, setMaxIndex] = useState(0);
+
+  // Category horizontal scroll refs and state
+  const categoryScrollRef = useRef(null);
+  const categoryItemRefs = useRef({});
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  // Store counts per category
+  const categoryCounts = useMemo(() => {
+    const counts = { All: businessesData.length };
+    businessesData.forEach((biz) => {
+      counts[biz.category] = (counts[biz.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
+
+  const checkCategoryScroll = useCallback(() => {
+    if (!categoryScrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = categoryScrollRef.current;
+    setCanScrollLeft(scrollLeft > 6);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 6);
+  }, []);
+
+  useEffect(() => {
+    checkCategoryScroll();
+    const el = categoryScrollRef.current;
+    if (el) {
+      el.addEventListener('scroll', checkCategoryScroll, { passive: true });
+      window.addEventListener('resize', checkCategoryScroll);
+      return () => {
+        el.removeEventListener('scroll', checkCategoryScroll);
+        window.removeEventListener('resize', checkCategoryScroll);
+      };
+    }
+  }, [checkCategoryScroll]);
+
+  const scrollCategories = (direction) => {
+    if (!categoryScrollRef.current) return;
+    const amount = 260;
+    categoryScrollRef.current.scrollBy({
+      left: direction === 'left' ? -amount : amount,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleCategoryWheel = (e) => {
+    if (!categoryScrollRef.current) return;
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      categoryScrollRef.current.scrollLeft += e.deltaY * 0.8;
+    }
+  };
+
+  const handleSelectCategory = (cat) => {
+    setSelectedCategory(cat);
+    const itemEl = categoryItemRefs.current[cat];
+    if (itemEl && categoryScrollRef.current) {
+      itemEl.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  };
 
   const CARD_WIDTH = 240; // Uniform larger card width in px
   const CARD_GAP = 16;    // Gap between cards in px
@@ -197,52 +298,141 @@ export default function Businesses() {
           </div>
         </div>
 
-        {/* Filter Pills & Search */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3 mb-6">
+        {/* Category Navigation Showcase & Search */}
+        <div className="mb-7 space-y-3.5">
+          {/* Luxury Category Dock */}
+          <div className="relative group/category">
+            {/* Left fade gradient + navigation arrow */}
+            <div
+              className={`pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-16 bg-gradient-to-r from-[#20050b] via-[#20050b]/90 to-transparent z-10 rounded-l-2xl transition-opacity duration-300 ${
+                canScrollLeft ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+            <button
+              onClick={() => scrollCategories('left')}
+              aria-label="Scroll categories left"
+              className={`absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 hover:bg-amber-400 hover:text-[#38050e] text-white/90 border border-white/20 shadow-lg items-center justify-center transition-all duration-200 hidden sm:flex ${
+                canScrollLeft ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+              }`}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
 
-          {/* Category Tabs */}
-          <div className="w-full md:w-auto flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
-            {categories.map((cat) => {
-              const active = selectedCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 border ${active
-                      ? 'bg-amber-400 text-brand-burgundy border-amber-400 font-bold shadow'
-                      : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/10 hover:text-white'
+            {/* Scrollable Track */}
+            <div
+              ref={categoryScrollRef}
+              onWheel={handleCategoryWheel}
+              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar scroll-smooth p-1.5 sm:p-2 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.06)]"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none'
+              }}
+            >
+              {categories.map((cat) => {
+                const active = selectedCategory === cat;
+                const Icon = CATEGORY_ICONS[cat] || Sparkles;
+                const count = categoryCounts[cat] || 0;
+
+                return (
+                  <button
+                    key={cat}
+                    ref={(el) => (categoryItemRefs.current[cat] = el)}
+                    onClick={() => handleSelectCategory(cat)}
+                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-300 shrink-0 border select-none ${
+                      active
+                        ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-[#38050e] border-amber-300 font-bold shadow-[0_0_22px_rgba(245,158,11,0.4)] scale-[1.02]'
+                        : 'bg-white/[0.04] text-white/75 hover:text-white border-white/10 hover:border-amber-400/40 hover:bg-white/[0.09] active:scale-95'
                     }`}
-                >
-                  {cat}
-                </button>
-              );
-            })}
+                  >
+                    <Icon
+                      className={`w-3.5 h-3.5 transition-colors shrink-0 ${
+                        active
+                          ? 'text-[#38050e] stroke-[2.5]'
+                          : 'text-amber-400/80 group-hover:text-amber-300 stroke-[2]'
+                      }`}
+                    />
+                    <span className="tracking-wide">{cat}</span>
+                    <span
+                      className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold transition-all ${
+                        active
+                          ? 'bg-[#38050e]/15 text-[#38050e]'
+                          : 'bg-white/10 group-hover:bg-white/15 text-white/50 group-hover:text-white/80'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right fade gradient + navigation arrow */}
+            <div
+              className={`pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-16 bg-gradient-to-l from-[#20050b] via-[#20050b]/90 to-transparent z-10 rounded-r-2xl transition-opacity duration-300 ${
+                canScrollRight ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+            <button
+              onClick={() => scrollCategories('right')}
+              aria-label="Scroll categories right"
+              className={`absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/80 hover:bg-amber-400 hover:text-[#38050e] text-white/90 border border-white/20 shadow-lg items-center justify-center transition-all duration-200 hidden sm:flex ${
+                canScrollRight ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'
+              }`}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
 
-          {/* Quick Search */}
-          <div className="w-full md:w-64 flex items-center gap-2">
-            <div className="relative w-full">
-              <Search className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          {/* Sub-toolbar: Active Status Indicator & Quick Search */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1">
+            {/* Status / Active Filter Badge */}
+            <div className="flex items-center gap-2 text-xs text-white/60">
+              <span className="flex items-center gap-1.5">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
+                <span>Showing</span>
+                <span className="font-bold text-white">{filteredShops.length}</span>
+                <span>{filteredShops.length === 1 ? 'store' : 'stores'}</span>
+              </span>
+
+              {(selectedCategory !== 'All' || searchQuery) && (
+                <div className="flex items-center gap-1.5 pl-2 border-l border-white/15">
+                  <span className="text-[11px] text-amber-300/90 font-medium">
+                    {selectedCategory !== 'All' ? selectedCategory : 'Filtered'}
+                  </span>
+                  <button
+                    onClick={() => {
+                      setSelectedCategory('All');
+                      setSearchQuery('');
+                    }}
+                    className="inline-flex items-center gap-1 text-[11px] text-white/45 hover:text-amber-300 underline underline-offset-2 transition-colors ml-1"
+                  >
+                    <RotateCcw className="w-2.5 h-2.5" />
+                    <span>Reset</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Search */}
+            <div className="relative w-full sm:w-72">
+              <Search className="w-3.5 h-3.5 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search shop..."
-                className="w-full pl-8 pr-7 py-1.5 text-xs rounded-full bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-amber-400/60 focus:bg-white/10 transition-all"
+                placeholder="Search by store name, keyword..."
+                className="w-full pl-9 pr-8 py-2 text-xs rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-amber-400/70 focus:bg-white/[0.08] focus:ring-2 focus:ring-amber-400/20 transition-all shadow-inner"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-white/10 hover:bg-white/20 text-white/60 hover:text-white flex items-center justify-center transition-colors"
                   aria-label="Clear search"
                 >
                   <X className="w-3 h-3" />
                 </button>
               )}
             </div>
-            <span className="shrink-0 text-[11px] font-medium text-white/40 whitespace-nowrap">
-              {filteredShops.length} {filteredShops.length === 1 ? 'store' : 'stores'}
-            </span>
           </div>
         </div>
 

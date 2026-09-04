@@ -35,7 +35,6 @@ export default function Footer() {
               { name: 'Founder', href: '#founder' },
               { name: 'Stores', href: '#businesses' },
               { name: 'Memories', href: '#memories' },
-              { name: 'Events', href: '#events' },
               { name: 'Contact', href: '#contact' },
             ].map((link) => (
               <a
