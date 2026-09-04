@@ -61,13 +61,24 @@ export default function Hero() {
     return () => clearTimeout(timerRef.current);
   }, [current, isPaused, next]);
 
+  const buttonTouch = useRef(null);
+
   /* ── Touch / Swipe (WhatsApp-stories style) ── */
   const onTouchStart = (e) => {
+    // If the touch originated from a button or link, ignore it for slide switching
+    if (e.target.closest('a, button, [role="button"]')) {
+      touchStart.current = null;
+      return;
+    }
     const t = e.touches[0];
     touchStart.current = { x: t.clientX, y: t.clientY, time: Date.now() };
   };
 
   const onTouchEnd = (e) => {
+    if (e.target.closest('a, button, [role="button"]')) {
+      touchStart.current = null;
+      return;
+    }
     if (!touchStart.current) return;
     const t = e.changedTouches[0];
     const dx = t.clientX - touchStart.current.x;
@@ -79,7 +90,7 @@ export default function Hero() {
       if (dx < -SWIPE_THRESHOLD) next();       // swipe left  → next
       else if (dx > SWIPE_THRESHOLD) prev();   // swipe right → prev
     } else if (Math.abs(dx) < 12 && Math.abs(dy) < 12) {
-      // Pure tap — left 40% = prev, right 40% = next (middle = nothing)
+      // Pure tap — left 35% = prev, right 35% = next (middle = nothing)
       const w = sectionRef.current?.offsetWidth ?? window.innerWidth;
       if (t.clientX < w * 0.35) prev();
       else if (t.clientX > w * 0.65) next();
@@ -88,10 +99,38 @@ export default function Hero() {
     touchStart.current = null;
   };
 
+  /* ── Dedicated Mobile Button Touch Handlers ── */
+  const onBtnTouchStart = (e) => {
+    e.stopPropagation();
+    const t = e.touches[0];
+    buttonTouch.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onBtnTouchEnd = (e, targetId) => {
+    e.stopPropagation();
+    if (!buttonTouch.current) return;
+    const t = e.changedTouches[0];
+    const dx = Math.abs(t.clientX - buttonTouch.current.x);
+    const dy = Math.abs(t.clientY - buttonTouch.current.y);
+    buttonTouch.current = null;
+
+    // Small movement confirms intentional tap on mobile
+    if (dx < 15 && dy < 15) {
+      e.preventDefault();
+      scrollTo(e, targetId);
+    }
+  };
+
   /* ── Scroll helper ── */
   const scrollTo = (e, id) => {
-    e.preventDefault();
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const el = document.querySelector(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   /* ── Slide variants ── */
@@ -223,12 +262,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.18 }}
-          className="flex items-center justify-center gap-3 sm:gap-4"
+          className="relative z-30 flex items-center justify-center gap-3 sm:gap-4 pointer-events-auto"
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
         >
           {/* Primary */}
           <a
             href="#about"
             onClick={(e) => scrollTo(e, '#about')}
+            onTouchStart={onBtnTouchStart}
+            onTouchEnd={(e) => onBtnTouchEnd(e, '#about')}
             className="group relative overflow-hidden
                        inline-flex items-center justify-center
                        px-6 sm:px-8 lg:px-10 xl:px-12
@@ -241,18 +284,20 @@ export default function Hero() {
                        shadow-[0_2px_20px_rgba(255,255,255,0.15)]
                        hover:shadow-[0_4px_30px_rgba(255,255,255,0.25)]
                        hover:scale-[1.04] active:scale-[0.97]
-                       transition-all duration-300"
+                       transition-all duration-300 pointer-events-auto cursor-pointer"
           >
             <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full
                              bg-gradient-to-r from-transparent via-white/30 to-transparent
-                             transition-transform duration-600 ease-in-out" />
-            <span className="relative">Explore Mall</span>
+                             transition-transform duration-600 ease-in-out pointer-events-none" />
+            <span className="relative pointer-events-none">Explore Mall</span>
           </a>
 
           {/* Secondary ghost */}
           <a
             href="#businesses"
             onClick={(e) => scrollTo(e, '#businesses')}
+            onTouchStart={onBtnTouchStart}
+            onTouchEnd={(e) => onBtnTouchEnd(e, '#businesses')}
             className="inline-flex items-center justify-center
                        px-6 sm:px-8 lg:px-10 xl:px-12
                        py-2.5 sm:py-3 lg:py-3.5
@@ -265,9 +310,9 @@ export default function Hero() {
                        backdrop-blur-sm
                        hover:bg-white/12 hover:border-white/60
                        hover:scale-[1.04] active:scale-[0.97]
-                       transition-all duration-300"
+                       transition-all duration-300 pointer-events-auto cursor-pointer"
           >
-            Our Businesses
+            <span className="pointer-events-none">Our Businesses</span>
           </a>
         </motion.div>
       </div>
