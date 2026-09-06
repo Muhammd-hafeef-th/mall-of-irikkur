@@ -223,15 +223,18 @@ export default function About() {
                 <div className="flex-1 h-px bg-gradient-to-r from-brand-burgundy/25 via-brand-burgundy/10 to-transparent" />
               </div>
 
-              {/* 4 Premium Branded Offering Cards */}
+              {/* 4 Premium Branded Offering Cards with Staggered Scroll Entrance */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {pillars.map((pillar, idx) => {
                   const Icon = pillar.icon;
                   return (
                     <motion.div
                       key={idx}
-                      whileHover={{ y: -3 }}
-                      transition={{ duration: 0.2 }}
+                      initial={{ opacity: 0, y: 28, scale: 0.96 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                      whileHover={{ y: -4, transition: { duration: 0.2 } }}
                       className={`group relative p-4 rounded-2xl bg-white border border-brand-burgundy/10 hover:border-brand-burgundy/30 shadow-[0_4px_20px_rgba(128,20,43,0.04)] hover:shadow-[0_14px_35px_rgba(128,20,43,0.1)] transition-all duration-300 flex items-start gap-3.5 overflow-hidden ${pillar.lightBg}`}
                     >
                       {/* Top subtle highlight line */}
@@ -259,8 +262,14 @@ export default function About() {
               </div>
             </div>
 
-            {/* ── Action Buttons ── */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* ── Action Buttons with Scroll Reveal ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-wrap items-center gap-3 pt-2"
+            >
               <a
                 href="#businesses"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-burgundy text-white font-bold text-xs uppercase tracking-wider hover:bg-brand-burgundy-hover transition-all duration-300 shadow-[0_8px_20px_rgba(128,20,43,0.25)] hover:shadow-[0_12px_28px_rgba(128,20,43,0.35)] active:scale-95"
@@ -276,24 +285,28 @@ export default function About() {
                 <Clock className="w-3.5 h-3.5 text-brand-burgundy" />
                 <span>Hours &amp; Location</span>
               </a>
-            </div>
+            </motion.div>
 
           </motion.div>
 
         </div>
 
-        {/* ── Bottom Stat Badges Strip (Generous, Grand & Well-spaced) ── */}
+        {/* ── Bottom Stat Badges Strip with Staggered Pop-In ── */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className="rounded-3xl bg-gradient-to-r from-brand-burgundy via-brand-burgundy-dark to-brand-burgundy p-6 sm:p-8 text-white shadow-[0_20px_50px_rgba(128,20,43,0.2)]"
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-white/15">
             {highlights.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, scale: 0.88, y: 15 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 className={`flex flex-col items-center text-center ${idx > 0 ? 'pt-6 lg:pt-0' : ''}`}
               >
                 <span className="font-heading text-3xl sm:text-4xl font-black text-amber-300 tracking-tight leading-none mb-1.5">
@@ -305,7 +318,7 @@ export default function About() {
                 <span className="text-white/60 text-xs font-normal mt-0.5">
                   {item.desc}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

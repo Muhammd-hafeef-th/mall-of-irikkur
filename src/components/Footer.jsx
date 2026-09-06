@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Instagram, Facebook, Youtube, MessageCircle, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Logo from './Logo';
 
@@ -19,7 +20,13 @@ export default function Footer() {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent pointer-events-none"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-30px' }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12"
+      >
         {/* ─── Row 1: Brand Logo + Horizontal Nav + Socials ─── */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
           {/* Logo */}
@@ -127,7 +134,7 @@ export default function Footer() {
             Kannur's Premier Shopping &amp; Lifestyle Destination
           </p>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

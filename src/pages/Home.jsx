@@ -8,10 +8,15 @@ import Memories from '../components/Memories';
 import Location from '../components/Location';
 import ContactCTA from '../components/ContactCTA';
 import Footer from '../components/Footer';
+import ScrollProgress from '../components/ScrollProgress';
+import ScrollToTop from '../components/ScrollToTop';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-brand-charcoal overflow-x-hidden font-sans selection:bg-brand-burgundy selection:text-white">
+    <div className="min-h-screen bg-white text-brand-charcoal overflow-x-hidden font-sans selection:bg-brand-burgundy selection:text-white relative">
+      {/* Dynamic Scroll Progress Bar */}
+      <ScrollProgress />
+
       {/* 1. Sticky Navigation Bar */}
       <Navbar />
 
@@ -21,16 +26,13 @@ export default function Home() {
       {/* 3. About Mall of Irikkur Section (WHITE) */}
       <About />
 
-      {/* 4. Founder Section (LIGHT) */}
-
-
       {/* 5 & 6. Businesses & Featured Brand Section (BURGUNDY) */}
       <Businesses />
-
 
       {/* 7. Memories / Gallery Section (WHITE) */}
       <Memories />
 
+      {/* 8. Founder Section */}
       <Founder />
 
       {/* 10. Location + Interactive Google Map Section (WHITE) */}
@@ -41,6 +43,9 @@ export default function Home() {
 
       {/* 12. Footer Section (DEEP BURGUNDY) */}
       <Footer />
+
+      {/* Floating Scroll to Top Action Button */}
+      <ScrollToTop />
     </div>
   );
 }

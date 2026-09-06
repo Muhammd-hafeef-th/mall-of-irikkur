@@ -100,8 +100,15 @@ export default function Gallery() {
 
   return (
     <div className="w-full relative">
-      {/* ─── Top Control Bar: Counter + Autoplay Toggle + Arrows ─── */}
-      <div className="flex items-center justify-between gap-4 mb-6 sm:mb-8">
+      {/* Top Controls Bar with Scroll Reveal */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="flex items-center justify-between gap-4 mb-6"
+      >
+        {/* Status indicator + Play/Pause button */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-cream border border-brand-burgundy/15 text-brand-burgundy text-xs font-bold tracking-wider shadow-sm">
             <Camera className="w-3.5 h-3.5 text-brand-burgundy" />
@@ -145,7 +152,7 @@ export default function Gallery() {
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* ─── Horizontal Premium Memory Reel ─── */}
       <div
@@ -163,10 +170,10 @@ export default function Gallery() {
           return (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.2) }}
+              initial={{ opacity: 0, y: 35, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: Math.min(idx * 0.08, 0.35), ease: [0.22, 1, 0.36, 1] }}
               onClick={() => setLightboxIdx(idx)}
               className={`
                 snap-start flex-shrink-0 relative group rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer

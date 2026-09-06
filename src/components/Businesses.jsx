@@ -249,7 +249,13 @@ export default function Businesses() {
           </div>
 
           {/* Controls: Carousel Arrows & View Mode Toggle */}
-          <div className="flex items-center gap-3 self-end md:self-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="flex items-center gap-3 self-end md:self-auto"
+          >
             {/* View Mode Switcher */}
             <div className="flex items-center bg-white/5 p-1 rounded-xl border border-white/10 text-xs">
               <button
@@ -295,11 +301,17 @@ export default function Businesses() {
                 </button>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
 
         {/* Category Navigation Showcase & Search */}
-        <div className="mb-7 space-y-3.5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, delay: 0.18 }}
+          className="mb-7 space-y-3.5"
+        >
           {/* Luxury Category Dock */}
           <div className="relative group/category">
             {/* Left fade gradient + navigation arrow */}
@@ -434,7 +446,7 @@ export default function Businesses() {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Store Cards Showcase */}
         {filteredShops.length === 0 ? (
@@ -476,9 +488,13 @@ export default function Businesses() {
                 animate={{ x: -currentIndex * STEP }}
                 transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
               >
-                {filteredShops.map((shop) => (
-                  <div
+                {filteredShops.map((shop, idx) => (
+                  <motion.div
                     key={shop.id}
+                    initial={{ opacity: 0, y: 26, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: '-30px' }}
+                    transition={{ duration: 0.45, delay: Math.min(idx * 0.05, 0.35), ease: [0.22, 1, 0.36, 1] }}
                     onClick={() => setActiveShop(shop)}
                     style={{ width: CARD_WIDTH }}
                     className="w-[240px] h-[245px] shrink-0 bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-amber-400/50 rounded-2xl p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.5),0_0_18px_rgba(245,158,11,0.1)] cursor-pointer flex flex-col justify-between group select-none"
@@ -525,7 +541,7 @@ export default function Businesses() {
                       <span className="uppercase tracking-wider font-semibold">View Details</span>
                       <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </motion.div>
             </div>
@@ -548,9 +564,13 @@ export default function Businesses() {
             layout
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 justify-items-center"
           >
-            {filteredShops.map((shop) => (
-              <div
+            {filteredShops.map((shop, idx) => (
+              <motion.div
                 key={shop.id}
+                initial={{ opacity: 0, y: 26, scale: 0.94 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.45, delay: (idx % 5) * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => setActiveShop(shop)}
                 className="w-full max-w-[240px] h-[245px] bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-amber-400/50 rounded-2xl p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.5),0_0_18px_rgba(245,158,11,0.1)] cursor-pointer flex flex-col justify-between group select-none"
               >
@@ -591,7 +611,7 @@ export default function Businesses() {
                   <span className="uppercase tracking-wider font-semibold">View Details</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         )}

@@ -69,17 +69,17 @@ export default function Location() {
         {/* Two-Column Location Details & Interactive Google Map */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-          {/* Left Column: Contact Cards & Address */}
+          {/* Left Column: Contact Cards & Address with Staggered Scroll Reveals */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-5 space-y-6"
           >
             <div className="p-8 rounded-3xl bg-brand-cream-light border border-brand-burgundy/15 shadow-lg">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-2xl bg-brand-burgundy text-white">
+                <div className="p-3 rounded-2xl bg-brand-burgundy text-white shadow-md">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
@@ -92,20 +92,32 @@ export default function Location() {
                 </div>
               </div>
 
-              {/* Info Rows */}
+              {/* Info Rows with Cascading Scroll Animation */}
               <div className="space-y-4 text-sm text-brand-charcoal">
 
                 {/* Physical Address */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10">
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.1 }}
+                  className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10 hover:border-brand-burgundy/30 transition-colors shadow-sm"
+                >
                   <MapPin className="w-5 h-5 text-brand-burgundy shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-brand-burgundy block text-xs uppercase tracking-wider">Address</span>
                     <span className="font-medium">Main Commercial Road, Irikkur Town, Kannur District, Kerala - 670593</span>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Phone */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10">
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.18 }}
+                  className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10 hover:border-brand-burgundy/30 transition-colors shadow-sm"
+                >
                   <Phone className="w-5 h-5 text-brand-burgundy shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-brand-burgundy block text-xs uppercase tracking-wider">Phone Enquiries</span>
@@ -113,10 +125,16 @@ export default function Location() {
                       +91 98470 12345 / +91 490 2400123
                     </a>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Email */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10">
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.26 }}
+                  className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10 hover:border-brand-burgundy/30 transition-colors shadow-sm"
+                >
                   <Mail className="w-5 h-5 text-brand-burgundy shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-brand-burgundy block text-xs uppercase tracking-wider">Email Address</span>
@@ -124,10 +142,16 @@ export default function Location() {
                       info@mallofirikkur.com
                     </a>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Opening Hours */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10">
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: 0.34 }}
+                  className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-brand-burgundy/10 hover:border-brand-burgundy/30 transition-colors shadow-sm"
+                >
                   <Clock className="w-5 h-5 text-brand-burgundy shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-brand-burgundy block text-xs uppercase tracking-wider">Opening Hours</span>
@@ -135,33 +159,39 @@ export default function Location() {
                     <span className="font-medium block">Retail & Mall: 10:00 AM - 9:30 PM</span>
                     <span className="font-medium block">Food Court: 11:00 AM - 10:30 PM</span>
                   </div>
-                </div>
+                </motion.div>
 
               </div>
 
               {/* Get Directions Button */}
-              <div className="mt-8 pt-4">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: 0.42 }}
+                className="mt-8 pt-4"
+              >
                 <a
                   href={googleMapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold text-base bg-brand-burgundy text-white hover:bg-brand-burgundy-dark hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold text-base bg-brand-burgundy text-white hover:bg-brand-burgundy-dark hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-md active:scale-98"
                 >
                   <Navigation className="w-5 h-5" />
                   <span>Get Directions on Google Maps</span>
                   <ExternalLink className="w-4 h-4 ml-1 opacity-80" />
                 </a>
-              </div>
+              </motion.div>
 
             </div>
           </motion.div>
 
           {/* Right Column: Embedded Interactive Google Map */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            initial={{ opacity: 0, x: 35, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7"
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-brand-cream bg-brand-cream h-[450px] sm:h-[540px]">
