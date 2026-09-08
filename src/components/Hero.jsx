@@ -5,31 +5,43 @@ import { ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react';
 const slides = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?q=80&w=2000&auto=format&fit=crop',
-    tag: 'Shopping & Lifestyle',
-    headline: 'Where Irikkur',
-    highlight: 'Comes Together.',
+    image: '/Banner/supermarket.png',
+    tag: 'Hypermarket & Daily Essentials',
+    headline: 'Metro Daily',
+    highlight: 'Hyper Market.',
+    description: 'Everyday essentials made easy with fresh groceries, premium household goods, and unbeatable variety.',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2000&auto=format&fit=crop',
-    tag: 'World-Class Retail',
-    headline: 'Discover Brands',
-    highlight: "You'll Love.",
+    image: '/Banner/bakery.png',
+    tag: 'Artisan Bakery & Confectionery',
+    headline: 'Bake Story',
+    highlight: 'Artisanal Delights.',
+    description: 'Handcrafted oven-fresh breads, gourmet pastries, celebration cakes, and delicious oven-baked treats.',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?q=80&w=2000&auto=format&fit=crop',
-    tag: 'Food & Flavours',
-    headline: 'A Feast for',
-    highlight: 'Every Taste.',
+    image: '/Banner/lobyx.png',
+    tag: 'Premium Gaming Lounge',
+    headline: 'Lobyx',
+    highlight: 'Good Games. Better People.',
+    description: 'Step into a stylish gaming space designed for pool, fun, connection, and unforgettable experiences.',
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2000&auto=format&fit=crop',
-    tag: 'Events & Entertainment',
-    headline: 'Memories',
-    highlight: 'Made Here.',
+    image: '/Banner/layali.png',
+    tag: 'Haute Couture & Modest Fashion',
+    headline: 'Layali Boutique',
+    highlight: 'Timeless Elegance.',
+    description: 'Exclusive designer abayas, luxury modest fashion, festive couture, and signature perfumes.',
+  },
+  {
+    id: 5,
+    image: '/Banner/iweb.png',
+    tag: 'Smart Gadgets & Electronics',
+    headline: 'iweb Store',
+    highlight: 'Smart Innovation.',
+    description: 'Premier destination for Apple devices, flagship smartphones, smart electronics, and certified service.',
   },
 ];
 
@@ -41,7 +53,7 @@ export default function Hero() {
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
 
-  const timerRef   = useRef(null);
+  const timerRef = useRef(null);
   const touchStart = useRef(null); // {x, y, time}
   const sectionRef = useRef(null);
 
@@ -51,7 +63,7 @@ export default function Hero() {
     setCurrent((index + slides.length) % slides.length);
   }, []);
 
-  const next = useCallback(() => goTo(current + 1,  1), [current, goTo]);
+  const next = useCallback(() => goTo(current + 1, 1), [current, goTo]);
   const prev = useCallback(() => goTo(current - 1, -1), [current, goTo]);
 
   /* ── Auto-advance ── */
@@ -169,12 +181,13 @@ export default function Hero() {
         >
           <img
             src={slide.image}
-            alt={slide.tag}
+            alt={`${slide.headline} ${slide.highlight} - ${slide.tag}`}
             className="w-full h-full object-cover object-center"
             draggable={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/48 to-black/25" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-transparent to-black/28" />
+          <div className="absolute inset-0 bg-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
         </motion.div>
       </AnimatePresence>
 
@@ -219,7 +232,7 @@ export default function Hero() {
                       px-6 sm:px-14 lg:px-20 xl:px-28
                       pt-20 pb-4">
 
-        {/* Category tag — tiny all-caps, letter-spaced */}
+        {/* Category tag — luxury pill */}
         <AnimatePresence mode="wait">
           <motion.span
             key={`tag-${current}`}
@@ -227,9 +240,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.32 }}
-            className="inline-block mb-3 sm:mb-4
+            className="inline-flex items-center mb-3 sm:mb-4 px-3.5 py-1 rounded-full
+                       bg-black/40 backdrop-blur-md border border-white/20 shadow-md
                        font-sans text-[9px] sm:text-[10px] lg:text-[11px]
-                       font-semibold tracking-[0.28em] uppercase text-white/80"
+                       font-semibold tracking-[0.25em] uppercase text-white/90"
           >
             {slide.tag}
           </motion.span>
@@ -243,9 +257,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0, transition: { duration: 0.52, delay: 0.07, ease: 'easeOut' } }}
             exit={{ opacity: 0, y: -10, transition: { duration: 0.22 } }}
             className="font-display font-semibold italic leading-[1.05]
-                       text-[clamp(2.6rem,8.5vw,7rem)]
-                       text-white mb-5 sm:mb-7
-                       max-w-2xl sm:max-w-3xl lg:max-w-4xl xl:max-w-5xl"
+                       text-[clamp(2.4rem,7.5vw,6.5rem)]
+                       text-white mb-3 sm:mb-4
+                       max-w-2xl sm:max-w-3xl lg:max-w-4xl xl:max-w-5xl
+                       drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]"
           >
             {slide.headline}{' '}
             <span
@@ -255,6 +270,23 @@ export default function Hero() {
               {slide.highlight}
             </span>
           </motion.h1>
+        </AnimatePresence>
+
+        {/* Slide Description */}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={`desc-${current}`}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.45, delay: 0.12, ease: 'easeOut' } }}
+            exit={{ opacity: 0, y: -6, transition: { duration: 0.2 } }}
+            className="font-sans text-xs sm:text-base lg:text-lg
+                       text-white/95 font-light tracking-wide
+                       max-w-md sm:max-w-xl lg:max-w-2xl
+                       mb-6 sm:mb-8 leading-relaxed
+                       drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] px-2"
+          >
+            {slide.description}
+          </motion.p>
         </AnimatePresence>
 
         {/* CTA Buttons */}
@@ -302,13 +334,13 @@ export default function Hero() {
                        px-6 sm:px-8 lg:px-10 xl:px-12
                        py-2.5 sm:py-3 lg:py-3.5
                        rounded-full
-                       bg-transparent text-white
+                       bg-black/30 hover:bg-black/50 text-white
                        font-sans font-semibold
                        text-[11px] sm:text-sm lg:text-[15px]
                        tracking-wide
-                       border border-white/35
-                       backdrop-blur-sm
-                       hover:bg-white/12 hover:border-white/60
+                       border border-white/40
+                       backdrop-blur-md shadow-lg
+                       hover:border-white/70
                        hover:scale-[1.04] active:scale-[0.97]
                        transition-all duration-300 pointer-events-auto cursor-pointer"
           >
@@ -370,11 +402,10 @@ export default function Hero() {
               key={s.id}
               onClick={() => goTo(i, i > current ? 1 : -1)}
               aria-label={`Slide ${i + 1}`}
-              className={`rounded-full transition-all duration-300 ${
-                i === current
-                  ? 'w-6 sm:w-8 h-[4px] bg-white shadow-[0_0_7px_rgba(255,255,255,0.5)]'
-                  : 'w-[4px] h-[4px] bg-white/28 hover:bg-white/50'
-              }`}
+              className={`rounded-full transition-all duration-300 ${i === current
+                ? 'w-6 sm:w-8 h-[4px] bg-white shadow-[0_0_7px_rgba(255,255,255,0.5)]'
+                : 'w-[4px] h-[4px] bg-white/28 hover:bg-white/50'
+                }`}
             />
           ))}
         </div>

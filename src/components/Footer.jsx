@@ -121,8 +121,8 @@ export default function Footer() {
           {/* Email */}
           <div className="flex items-center gap-2">
             <Mail className="w-3.5 h-3.5 text-brand-gold shrink-0" />
-            <a href="mailto:info@mallofirikkur.com" className="hover:text-white hover:underline transition-colors">
-              info@mallofirikkur.com
+            <a href="mailto:mallofirikkursm@gmail.com" className="hover:text-white hover:underline transition-colors">
+              mallofirikkursm@gmail.com
             </a>
           </div>
         </div>

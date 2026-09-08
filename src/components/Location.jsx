@@ -138,8 +138,8 @@ export default function Location() {
                   <Mail className="w-5 h-5 text-brand-burgundy shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold text-brand-burgundy block text-xs uppercase tracking-wider">Email Address</span>
-                    <a href="mailto:info@mallofirikkur.com" className="font-semibold text-brand-burgundy hover:underline">
-                      info@mallofirikkur.com
+                    <a href="mailto:mallofirikkursm@gmail.com" className="font-semibold text-brand-burgundy hover:underline">
+                      mallofirikkursm@gmail.com
                     </a>
                   </div>
                 </motion.div>
